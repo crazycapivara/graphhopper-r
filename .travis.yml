@@ -1,7 +1,7 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
-sudo: false
+sudo: true
 latex: false
 dist: trusty
 cache: packages
@@ -10,3 +10,8 @@ r_binary_packages:
   - units
   - sf
   - httr
+
+addons:
+  apt:
+    packages:
+      - libudunits2-dev
