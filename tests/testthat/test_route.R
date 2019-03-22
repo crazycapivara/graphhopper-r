@@ -4,9 +4,8 @@ mock_httr_GET <- function(...) {
   readRDS("data/route-response.rds")
 }
 
-test_that("xx", {
-  with_mock(
-    `httr::GET` = mock_httr_GET, {
+test_that("sf LINESTRING", {
+  with_mock(`httr::GET` = mock_httr_GET, {
       # Prepare
       start_point <- c(52.592204, 13.414307)
       end_point <- c(52.539614, 13.364868)
