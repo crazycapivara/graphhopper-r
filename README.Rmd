@@ -1,0 +1,60 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "400px"
+)
+```
+# graphhopper-R
+
+[![Travis build status](https://travis-ci.org/crazycapivara/graphhopper-r.svg?branch=master)](https://travis-ci.org/crazycapivara/graphhopper-r)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+
+`graphhopper` - An R Interace to the [graphhopper](https://www.graphhopper.com/) API
+
+## Installation
+
+You can install the latest version of `graphhopper` from github with:
+
+```r
+# install.packages("devtools")
+devtools::install_github("crazycapivara/graphhopper-r")
+```
+
+## Get started
+
+Run your own graphhoper API (Berlin):
+
+```bash
+docker run -p 8989:8989 -d crazycapivara/graphhopper
+```
+
+Get a route in Berlin:
+
+```{r example}
+library(graphhopper)
+
+# Setup
+API_URL <- "http://localhost:8989/"
+set_api_url(API_URL)
+
+start_point <- c(52.592204, 13.414307)
+end_point <- c(52.539614, 13.364868)
+
+(route <- get_route_sf(start_point, end_point))
+
+sf::st_geometry(route) %>%
+  plot()
+
+route$time
+
+sf::st_coordinates(route)[, c("X", "Y")] %>%
+  head()
+```
