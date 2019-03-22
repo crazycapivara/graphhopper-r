@@ -10,5 +10,6 @@ Imports:
   magrittr,
   httr
 Suggests:
-  sf
+    sf,
+    testthat
 RoxygenNote: 6.1.1
