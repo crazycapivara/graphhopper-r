@@ -12,8 +12,8 @@ get_api_url <- function() {
 }
 
 gh_get <- function(path) {
-  api_url <- paste0(get_api_url(), path)
+  # api_url <- paste0(get_api_url(), path)
   function(...) {
-    httr::GET(api_url, query = list(...))
+    httr::GET(get_api_url(), path = path, query = list(...))
   }
 }
