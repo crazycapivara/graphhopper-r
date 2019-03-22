@@ -2,8 +2,11 @@
 
 language: R
 sudo: false
+latex: false
+dist: trusty
 cache: packages
 
 r_binary_packages:
+  - units
   - sf
   - httr
