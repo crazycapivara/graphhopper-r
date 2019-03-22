@@ -38,5 +38,5 @@ get_route_sf <- function(from_lnglat, to_lnglat, ...) {
     parse_route()
   sf::st_linestring(route$coordinates) %>%
     sf::st_sfc(crs = 4326) %>%
-    sf::st_sf(time = route$time, distance = route$distance)
+    sf::st_sf(time = route$time, distance = route$distance, geometry = .)
 }
