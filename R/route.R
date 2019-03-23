@@ -28,7 +28,7 @@ parse_route <- function(route) {
 #' @param ... additional query parameters
 #' @export
 get_route <- function(from_lnglat, to_lnglat, ...) {
-  get_route_response(from_lnglat, to_lnglat) %>%
+  get_route_response(from_lnglat, to_lnglat, ...) %>%
     httr::content()
 }
 
