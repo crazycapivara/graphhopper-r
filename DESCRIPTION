@@ -1,6 +1,8 @@
 Package: graphhopper
 Title: An R Interface to graphhopper
-Version: 0.0.0.9000
+Version: 0.0.1
+Date: 2019-03-23
+Maintainer: Stefan Kuethe <crazycapivara@gmail.com>
 Authors@R: person("Stefan", "Kuethe", role = c("aut", "cre"), email = "crazycapivara@gmail.com")
 Description: Accesses the graphhopper API.
 License: MIT + file LICENSE
@@ -8,8 +10,11 @@ Encoding: UTF-8
 LazyData: true
 Imports:
   magrittr,
-  httr
+  httr,
+  tibble
 Suggests:
     sf,
     testthat
 RoxygenNote: 6.1.1
+URL: https://github.com/crazycapivara/graphhopper-r
+BugReports: https://github.com/crazycapivara/graphhopper-r/issues
