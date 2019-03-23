@@ -1,3 +1,13 @@
+#' Get the route for a given set of points.
+#' @param points list of points as [lat, lng] pairs
+#' @param ... additional query parameters, see \url{https://docs.graphhopper.com}
+#' @example \dontrun{
+#'    start_point <- c(52.592204, 13.414307)
+#'    end_point <- c(52.539614, 13.364868)
+#'
+#'    gh_get_route(list(start_point, end_point), locale = "de") %>%
+#'      gh_route_linestring()
+#' }
 #' @export
 gh_get_route <- function(points, ...) {
   route_response <- gh_get_route_response(points, ...)
@@ -19,6 +29,8 @@ gh_get_route_response <- function(points, ...) {
   httr::GET(get_api_url(), path = "route", query = query)
 }
 
+#' Parse route to linestring.
+#' @param route route (raw) route object, see \code{\link{gh_get_route}}
 #' @export
 gh_route_linestring <- function(route) {
   route <- gh_parse_route(route)
@@ -31,12 +43,17 @@ gh_route_linestring <- function(route) {
   )
 }
 
+#' Get coordinates from route.
+#' @inheritParams gh_route_linestring
 #' @export
 gh_route_coordinates <- function(route) {
   route <- gh_parse_route(route)
   tibble::as_tibble(route$coordinates)
 }
 
+#' Parse route.
+#' @inheritParams gh_route_linestring
+#' @export
 gh_parse_route <- function(route) {
   path <- route$paths[[1]]
   n <- length(path$points$coordinates[[1]])
