@@ -14,3 +14,12 @@ gh_get_route(points, ...)
 \description{
 Get the route for a given set of points.
 }
+\examples{
+\dontrun{
+   start_point <- c(52.592204, 13.414307)
+   end_point <- c(52.539614, 13.364868)
+
+   gh_get_route(list(start_point, end_point), locale = "de") \%>\%
+     gh_route_linestring()
+}
+}

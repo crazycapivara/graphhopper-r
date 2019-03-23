@@ -1,7 +1,7 @@
 #' Get the route for a given set of points.
 #' @param points list of points as [lat, lng] pairs
 #' @param ... additional query parameters, see \url{https://docs.graphhopper.com}
-#' @example \dontrun{
+#' @examples \dontrun{
 #'    start_point <- c(52.592204, 13.414307)
 #'    end_point <- c(52.539614, 13.364868)
 #'
@@ -65,4 +65,8 @@ gh_parse_route <- function(route) {
     time = path$time,
     distance = path$distance
   )
+}
+
+gh_route_instructions <- function(route) {
+  message("not implemented yet")
 }
