@@ -3,7 +3,7 @@
 #' in an environment variable called \code{GH_API_URL}.
 #' @param api_url API base url
 #' @export
-set_api_url <- function(api_url) {
+gh_set_api_url <- function(api_url) {
   Sys.setenv(GH_API_URL = api_url)
 }
 

@@ -1,73 +1,51 @@
-get_route_response <- function(from_lnglat, to_lnglat, ...) {
-  get <- gh_get("route")
-  get(
-    point = parse_lnglat_to_query_point(from_lnglat),
-    point = parse_lnglat_to_query_point(to_lnglat),
+#' @export
+gh_get_route <- function(points, ...) {
+  route_response <- gh_get_route_response(points, ...)
+  if (route_response$status != 200) {
+    return(route_response)
+  }
+
+  httr::content(route_response)
+}
+
+gh_get_route_response <- function(points, ...) {
+  points <- lapply(points, point_str)
+  names(points) <- rep("point", length(points))
+  query <- c(
+    points,
     points_encoded = FALSE,
     ...
   )
+  httr::GET(get_api_url(), path = "route", query = query)
 }
 
-# TODO: merge somehow with 'gh_route_coordinates'
-parse_route <- function(route) {
-  path <- route$paths[[1]]
-  # coordinates <- unlist(path$points$coordinates) %>%
-  #   matrix(ncol = 2, byrow = TRUE)
-  # colnames(coordinates) <- c("lng", "lat")
-  list(
-    # coordinates = coordinates,
-    coordinates = gh_route_coordinates(route),
-    time = path$time,
-    distance = path$distance
+#' @export
+gh_route_linestring <- function(route) {
+  route <- gh_parse_route(route)
+  route_linestring <- sf::st_linestring(route$coordinates) %>%
+    sf::st_sfc(crs = 4326)
+  sf::st_sf(
+    geometry = route_linestring,
+    time = route$time,
+    distance = route$distance
   )
 }
 
-#' Get the route for a given start and end point.
-#' @param from_lnglat numeric vector; coordinates [lng, lat] of start point
-#' @param to_lnglat numeric vector; coordinates [lng, lat] of end point
-#' @param ... additional query parameters
 #' @export
-get_route <- function(from_lnglat, to_lnglat, ...) {
-  get_route_response(from_lnglat, to_lnglat, ...) %>%
-    httr::content()
-}
-
-#' Get the route for a given start and end point as \code{sf} object.
-#' @inheritParams get_route
-#' @export
-get_route_sf <- function(from_lnglat, to_lnglat, ...) {
-  get_route(from_lnglat, to_lnglat, ...) %>%
-    gh_route_line_sf()
-  # route <- get_route(from_lnglat, to_lnglat, ...) %>%
-  #   parse_route()
-  # sf::st_linestring(route$coordinates) %>%
-  #   sf::st_sfc(crs = 4326) %>%
-  #  sf::st_sf(time = route$time, distance = route$distance, geometry = .)
-}
-
-# ### Extract stuff ###
 gh_route_coordinates <- function(route) {
+  route <- gh_parse_route(route)
+  tibble::as_tibble(route$coordinates)
+}
+
+gh_parse_route <- function(route) {
   path <- route$paths[[1]]
+  n <- length(path$points$coordinates[[1]])
   coordinates <- unlist(path$points$coordinates) %>%
-    matrix(ncol = 2, byrow = TRUE)
+    matrix(ncol = n, byrow = TRUE)
   colnames(coordinates) <- c("lng", "lat")
-  coordinates
-}
-
-gh_route_points_sf <- function(route) {
-  gh_route_coordinates(route) %>%
-    as.data.frame() %>%
-    sf::st_as_sf(coords = c("lng", "lat"), crs = 4326)
-}
-
-gh_route_line_sf <- function(route) {
-  path <- route$paths[[1]]
-  gh_route_coordinates(route) %>%
-    sf::st_linestring() %>%
-    sf::st_sfc(crs = 4326) %>%
-    sf::st_sf(time = path$time, distance = path$distance, geometry = .)
-}
-
-gh_route_instructions <- function(route) {
-  message("not implemented yet")
+  list(
+    coordinates = coordinates,
+    time = path$time,
+    distance = path$distance
+  )
 }
