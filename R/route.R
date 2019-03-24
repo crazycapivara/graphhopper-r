@@ -30,7 +30,7 @@ gh_get_route_response <- function(points, ...) {
 }
 
 #' Parse route to linestring.
-#' @param route route (raw) route object, see \code{\link{gh_get_route}}
+#' @param route (raw) route object, see \code{\link{gh_get_route}}
 #' @export
 gh_route_linestring <- function(route) {
   route <- gh_parse_route(route)

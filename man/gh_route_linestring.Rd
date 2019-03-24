@@ -7,7 +7,7 @@
 gh_route_linestring(route)
 }
 \arguments{
-\item{route}{route (raw) route object, see \code{\link{gh_get_route}}}
+\item{route}{(raw) route object, see \code{\link{gh_get_route}}}
 }
 \description{
 Parse route to linestring.
