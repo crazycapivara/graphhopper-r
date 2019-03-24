@@ -19,6 +19,14 @@ route_response_path <- function(route_response, sf = TRUE) {
   result
 }
 
+response_coordinates <- function(coordinates) {
+  coords <- toJSON_fromJSON(coordinates)
+  if (ncol(coords) == 3) colnames(coords) <- c("x", "y", "z")
+  else colnames(coords) <- c("x", "y")
+
+  coords %>% tibble::as_tibble()
+}
+
 route_response_path_points_coordinates <- function(path) {
   coords <- path$points$coordinates %>%
     jsonlite::toJSON(auto_unbox = TRUE) %>%
