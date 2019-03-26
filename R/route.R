@@ -1,3 +1,5 @@
+# ### TODO: obsolete file
+
 #' Get the route for a given set of points.
 #' @param points list of points as [lat, lng] pairs
 #' @param ... additional query parameters, see \url{https://docs.graphhopper.com}
