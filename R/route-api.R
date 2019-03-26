@@ -1,6 +1,6 @@
 route_get <- function(points, ..., sf = TRUE) {
   route_get_raw(points, ...) %>%
-    route_response_path(sf = sf)
+    make_route_path(sf = sf)
 }
 
 route_get_raw <- function(points, ...) {
