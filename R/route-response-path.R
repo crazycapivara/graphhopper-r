@@ -24,30 +24,12 @@ parse_coordinates <- function(coordinates) {
   tibble::as_tibble(coords)
 }
 
-# route_response_path_points_coordinates <- function(path) {
-#  coords <- path$points$coordinates %>%
-#    jsonlite::toJSON(auto_unbox = TRUE) %>%
-#    jsonlite::fromJSON()
-#  if (ncol(coords) == 3) colnames(coords) <- c("x", "y", "z")
-#  else colnames(coords) <- c("x", "y")
-#
-#  coords %>% tibble::as_tibble()
-# }
-
 route_to_sf <- function(path) {
   linestring <- toJSON_st_read(path$points)
   linestring$time <- path$time
   linestring$distance <- path$distance
   linestring
 }
-
-#route_response_path_snapped_waypoints_coordinates <- function(path) {
-#  coords <- path$snapped_waypoints$coordinates %>%
-#    jsonlite::toJSON(auto_unbox = TRUE) %>%
-#    jsonlite::fromJSON()
-#  colnames(coords) <- c("x", "y")
-#  coords %>% tibble::as_tibble()
-#}
 
 parse_instructions <- function(instructions) {
   if (is.null(instructions)) return(NULL)
