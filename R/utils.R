@@ -11,3 +11,12 @@ toJSON_st_read <- function(item) {
   jsonlite::toJSON(item, auto_unbox = TRUE) %>%
     sf::st_read(quiet = TRUE)
 }
+
+check_response <- function(response) {
+  if (response$status != 200) {
+    message("Something went wrong.")
+    return(response)
+  }
+
+  httr::content(response)
+}
