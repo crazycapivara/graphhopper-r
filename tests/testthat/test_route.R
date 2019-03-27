@@ -4,6 +4,7 @@ mock_httr_GET <- function(...) {
   readRDS("data/route-response.rds")
 }
 
+# TODO: uses obsolete functions
 test_that("sf LINESTRING", {
   with_mock(`httr::GET` = mock_httr_GET, {
       # Prepare
