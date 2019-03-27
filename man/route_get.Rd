@@ -4,14 +4,16 @@
 \alias{route_get}
 \title{Get the route for a given set of points.}
 \usage{
-route_get(points, ..., sf = TRUE)
+route_get(api_client, points, ..., sf = TRUE)
 }
 \arguments{
+\item{api_client}{api client, see \code{\link{api_client}}}
+
 \item{points}{list of points as [lat, lng] pairs}
 
 \item{...}{additional query parameters, see \url{https://docs.graphhopper.com}}
 
-\item{sf}{whether to return route also as \code{sf} object}
+\item{sf}{logical scalar; whether to return route also as \code{sf} object}
 }
 \description{
 Get the route for a given set of points.
