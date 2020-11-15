@@ -1,0 +1,6 @@
+version: "2"
+services:
+  graphhopper:
+    image: graphhopper/graphhopper:2.0
+    ports:
+      - "8989:8989"
