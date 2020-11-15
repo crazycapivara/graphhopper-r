@@ -1,4 +1,5 @@
-gh_get_route_v2 <- function(points, ...) {
+#' @export
+gh_get_route <- function(points, ...) {
   points <- lapply(points, as_point_str)
   names(points) <- rep("point", length(points))
   query <- c(points, ...)
