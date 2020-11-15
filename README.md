@@ -13,17 +13,17 @@ Installation
 You can install the latest version of `graphhopper` from github with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("crazycapivara/graphhopper-r")
+# install.packages("remotes")
+remotes::install_github("crazycapivara/graphhopper-r")
 ```
 
 Get started
 -----------
 
-Run your own graphhoper API (Berlin):
+Run your own GraphHopper instance (Berlin):
 
 ``` bash
-docker run -p 8989:8989 -d crazycapivara/graphhopper
+docker run --name gh --rm -p 8989:8989 -d graphhopper/graphhopper:2.0
 ```
 
 Get a route in Berlin:
@@ -32,22 +32,21 @@ Get a route in Berlin:
 library(graphhopper)
 
 # Setup
-API_URL <- "http://localhost:8989/"
+API_URL <- "http://localhost:8989"
 gh_set_api_url(API_URL)
 
 start_point <- c(52.592204, 13.414307)
 end_point <- c(52.539614, 13.364868)
 
 (route <- gh_get_route(list(start_point, end_point)) %>%
-    gh_route_linestring())
+    gh_as_sf())
 #> Simple feature collection with 1 feature and 2 fields
 #> geometry type:  LINESTRING
 #> dimension:      XY
-#> bbox:           xmin: 13.36502 ymin: 52.5395 xmax: 13.41484 ymax: 52.59235
-#> epsg (SRID):    4326
-#> proj4string:    +proj=longlat +datum=WGS84 +no_defs
+#> bbox:           xmin: 13.36501 ymin: 52.53949 xmax: 13.41483 ymax: 52.59234
+#> CRS:            EPSG:4326
 #>     time distance                       geometry
-#> 1 712414 7676.601 LINESTRING (13.41422 52.592...
+#> 1 697411 7541.318 LINESTRING (13.41422 52.592...
 
 sf::st_geometry(route) %>%
   plot()
@@ -58,15 +57,15 @@ sf::st_geometry(route) %>%
 ``` r
 
 route$time
-#> [1] 712414
+#> [1] 697411
 
 via_point <- c(52.545461, 13.435249)
 
 route2 <- gh_get_route(list(start_point, via_point, end_point), miles = TRUE) %>%
-  gh_route_linestring()
+  gh_as_sf()
 
 route2$time
-#> [1] 1167141
+#> [1] 1168950
 
 sf::st_geometry(route2) %>%
   plot()
@@ -78,11 +77,11 @@ sf::st_geometry(route2) %>%
 
 sf::st_coordinates(route2)[, c("X", "Y")] %>%
   head()
-#>             X        Y
-#> [1,] 13.41422 52.59235
-#> [2,] 13.41322 52.59212
-#> [3,] 13.41484 52.58964
-#> [4,] 13.41536 52.59003
-#> [5,] 13.41599 52.59033
-#> [6,] 13.41942 52.59145
+#>          X        Y
+#> 1 13.41422 52.59234
+#> 2 13.41321 52.59212
+#> 3 13.41483 52.58964
+#> 4 13.41539 52.59004
+#> 5 13.41599 52.59032
+#> 6 13.41942 52.59145
 ```

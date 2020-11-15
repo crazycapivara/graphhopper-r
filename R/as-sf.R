@@ -1,3 +1,4 @@
+#' @export
 gh_as_sf <- function(content) {
   path <- content$paths[[1]]
   coords_df <- googlePolylines::decode(path$points)[[1]][, c("lon", "lat")]

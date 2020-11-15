@@ -24,16 +24,16 @@ knitr::opts_chunk$set(
 You can install the latest version of `graphhopper` from github with:
 
 ```r
-# install.packages("devtools")
-devtools::install_github("crazycapivara/graphhopper-r")
+# install.packages("remotes")
+remotes::install_github("crazycapivara/graphhopper-r")
 ```
 
 ## Get started
 
-Run your own graphhoper API (Berlin):
+Run your own GraphHopper instance (Berlin):
 
 ```bash
-docker run -p 8989:8989 -d crazycapivara/graphhopper
+docker run --name gh --rm -p 8989:8989 -d graphhopper/graphhopper:2.0
 ```
 
 Get a route in Berlin:
@@ -42,14 +42,14 @@ Get a route in Berlin:
 library(graphhopper)
 
 # Setup
-API_URL <- "http://localhost:8989/"
+API_URL <- "http://localhost:8989"
 gh_set_api_url(API_URL)
 
 start_point <- c(52.592204, 13.414307)
 end_point <- c(52.539614, 13.364868)
 
 (route <- gh_get_route(list(start_point, end_point)) %>%
-    gh_route_linestring())
+    gh_as_sf())
 
 sf::st_geometry(route) %>%
   plot()
@@ -59,7 +59,7 @@ route$time
 via_point <- c(52.545461, 13.435249)
 
 route2 <- gh_get_route(list(start_point, via_point, end_point), miles = TRUE) %>%
-  gh_route_linestring()
+  gh_as_sf()
 
 route2$time
 
