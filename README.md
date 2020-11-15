@@ -68,8 +68,9 @@ route2 <- gh_get_route(list(start_point, via_point, end_point), miles = TRUE) %>
 route2$time
 #> [1] 1168950
 
-sf::st_geometry(route2) %>%
-  plot()
+ggplot(data = route2) +
+  geom_sf() +
+  theme_bw()
 ```
 
 ![](man/figures/README-example-2.png)
