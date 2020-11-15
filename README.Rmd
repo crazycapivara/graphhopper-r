@@ -5,11 +5,13 @@ output: github_document
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r setup, include = FALSE}
+library(ggplot2)
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "400px"
+  fig.path = "man/figures/README-"
+  #,out.width = "400px"
 )
 ```
 # graphhopper-R
@@ -51,8 +53,9 @@ end_point <- c(52.539614, 13.364868)
 (route <- gh_get_route(list(start_point, end_point)) %>%
     gh_as_sf())
 
-sf::st_geometry(route) %>%
-  plot()
+ggplot(data = route) +
+  geom_sf() +
+  theme_bw()
 
 route$time
 

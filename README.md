@@ -48,11 +48,12 @@ end_point <- c(52.539614, 13.364868)
 #>     time distance                       geometry
 #> 1 697411 7541.318 LINESTRING (13.41422 52.592...
 
-sf::st_geometry(route) %>%
-  plot()
+ggplot(data = route) +
+  geom_sf() +
+  theme_bw()
 ```
 
-<img src="man/figures/README-example-1.png" width="400px" />
+![](man/figures/README-example-1.png)
 
 ``` r
 
@@ -71,7 +72,7 @@ sf::st_geometry(route2) %>%
   plot()
 ```
 
-<img src="man/figures/README-example-2.png" width="400px" />
+![](man/figures/README-example-2.png)
 
 ``` r
 
