@@ -13,10 +13,10 @@ test_that("sf LINESTRING", {
 
       # Act
       route <- gh_get_route(list(start_point, end_point)) %>%
-        gh_route_linestring()
+        gh_as_sf()
 
       # Assert
-      expect_equal(route$time, 712414)
+      expect_equal(route$time, 697411)
       expect_is(route, "sf")
       expect_equal(colnames(route), c("time", "distance", "geometry"))
     })
