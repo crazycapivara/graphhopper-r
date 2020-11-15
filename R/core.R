@@ -8,7 +8,8 @@ gh_set_api_url <- function(api_url) {
 }
 
 get_api_url <- function() {
-  Sys.getenv("GH_API_URL")
+  api_url <- Sys.getenv("GH_API_URL")
+  ifelse(identical(api_url, ""), DEFAULT_API_URL, api_url)
 }
 
 gh_get <- function(path) {
