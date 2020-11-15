@@ -3,3 +3,5 @@
 ^graphhopper\.Rproj$
 ^\.Rproj\.user$
 sandbox/
+examples/
+^docker-compose\.yml$
