@@ -1,4 +1,9 @@
 point_str <- function(point) {
+  .Deprecated("as_point_str")
+  paste0(point, collapse = ",")
+}
+
+as_point_str <- function(point) {
   paste0(point, collapse = ",")
 }
 
