@@ -1,12 +1,25 @@
+#' Convert a gh object into an sf object
+#' @param data A \code{gh_route} or \code{gh_spt} object.
+#' @param ... ignored
+#' @seealso \link{gh_get_route}, \link{gh_get_spt}
 #' @export
-gh_as_sf <- function(content) {
-  UseMethod("gh_as_sf", content)
+gh_as_sf <- function(data, ...) {
+  UseMethod("gh_as_sf", data)
 }
 
+#' @name gh_as_sf
+#' @param geom_type Use \code{geom_type = point} to return the points of the route
+#'   with ids corresponding to the instruction ids.
 #' @export
-gh_as_sf.gh_route <- function(content) {
-  path <- content$paths[[1]]
+gh_as_sf.gh_route <- function(data, ..., geom_type = c("linestring", "point")) {
+  path <- data$paths[[1]]
   coords_df <- googlePolylines::decode(path$points)[[1]][, c("lon", "lat")]
+  if (match.arg(geom_type) == "point") {
+    points_sf <- sf::st_as_sf(coords_df, coords = c("lon", "lat"), crs = 4326)
+    points_sf$gh_id <- 1:nrow(points_sf) - 1
+    return(points_sf)
+  }
+
   line_sfc <- as.matrix(coords_df) %>%
     sf::st_linestring() %>%
     sf::st_sfc(crs = 4326)
@@ -17,8 +30,9 @@ gh_as_sf.gh_route <- function(content) {
   )
 }
 
+#' @name gh_as_sf
 #' @export
-gh_as_sf.gh_spt <- function(content) {
-  content %>%
+gh_as_sf.gh_spt <- function(data, ...) {
+  data %>%
     sf::st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
 }

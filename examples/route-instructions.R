@@ -5,7 +5,7 @@ end_point <- c(52.53961, 13.36487)
 
 route <- gh_get_route(list(start_point, end_point))
 
-instructions_sf <- gh_as_sf_points(route) %>%
+instructions_sf <- gh_as_sf(route, geom_type = "point") %>%
   dplyr::inner_join(gh_instructions(route), by = c(gh_id = "start_id"))
 
 library(leaflet)

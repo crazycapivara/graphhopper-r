@@ -1,4 +1,4 @@
-#' Extract the bounding box from response data
+#' Extract the bounding box from an gh object
 #' @param data A \code{gh_route} or \link{gh_info} object.
 #' @seealso \link{gh_get_route}, \link{gh_get_info}
 #' @export
@@ -19,7 +19,7 @@ gh_bbox.gh_info <- function(data) {
   data$bbox %>% unlist()
 }
 
-#' Extract instructions from route data
+#' Extract the instructions from a gh route object
 #' @param data A \code{gh_route} object.
 #' @seealso \link{gh_get_route}
 #' @export
@@ -34,11 +34,11 @@ gh_instructions <- function(data) {
     dplyr::bind_rows()
 }
 
-#' @export
 gh_as_sf_points <- function(data) {
-  path <- data$paths[[1]]
-  points_sf <- googlePolylines::decode(path$points)[[1]][, c("lon", "lat")] %>%
-    sf::st_as_sf(coords = c("lon", "lat"), crs = 4326)
-  points_sf$gh_id <- 1:nrow(points_sf) - 1
-  points_sf
+  #path <- data$paths[[1]]
+  #points_sf <- googlePolylines::decode(path$points)[[1]][, c("lon", "lat")] %>%
+  #  sf::st_as_sf(coords = c("lon", "lat"), crs = 4326)
+  #points_sf$gh_id <- 1:nrow(points_sf) - 1
+  #points_sf
+  gh_as_sf(data, geom_type = "point")
 }
