@@ -7,7 +7,7 @@ as_point_str <- function(point) {
   paste0(point, collapse = ",")
 }
 
-set_gh_class <- function(x, class_name = c("gh_route", "gh_spt")) {
+set_gh_class <- function(x, class_name = c("gh_route", "gh_spt", "gh_info")) {
   structure(x, class = c(class(x), match.arg(class_name)))
 }
 
