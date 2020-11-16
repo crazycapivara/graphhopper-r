@@ -2,9 +2,11 @@
 
 export("%>%")
 export(gh_as_sf)
+export(gh_as_sf_points)
 export(gh_bbox)
 export(gh_get_info)
 export(gh_get_route)
 export(gh_get_spt)
+export(gh_instructions)
 export(gh_set_api_url)
 importFrom(magrittr,"%>%")
