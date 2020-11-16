@@ -5,3 +5,4 @@
 sandbox/
 examples/
 ^docker-compose\.yml$
+^data-raw$
