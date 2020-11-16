@@ -86,4 +86,17 @@ sf::st_coordinates(route2)[, c("X", "Y")] %>%
 #> 4 13.41539 52.59004
 #> 5 13.41599 52.59032
 #> 6 13.41942 52.59145
+
+# Shortest path tree
+start_point <- c(52.53961, 13.36487)
+
+points_sf <- gh_get_spt(start_point, time_limit = 180) %>%
+  gh_as_sf() %>%
+  dplyr::mutate(time = as.integer(time/1000/60))
+
+ggplot() +
+  geom_sf(data = points_sf, aes(colour = time), size = 0.5) +
+  theme_bw()
 ```
+
+![](man/figures/README-example-3.png)
