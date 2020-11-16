@@ -7,15 +7,19 @@ as_point_str <- function(point) {
   paste0(point, collapse = ",")
 }
 
-toJSON_fromJSON <- function(item) {
-  jsonlite::toJSON(item, auto_unbox = TRUE) %>%
-    jsonlite::fromJSON()
+set_gh_class <- function(x, class_name = c("gh_route", "gh_spt")) {
+  structure(x, class = c(class(x), match.arg(class_name)))
 }
 
-toJSON_st_read <- function(item) {
-  jsonlite::toJSON(item, auto_unbox = TRUE) %>%
-    sf::st_read(quiet = TRUE)
-}
+#toJSON_fromJSON <- function(item) {
+#  jsonlite::toJSON(item, auto_unbox = TRUE) %>%
+#    jsonlite::fromJSON()
+#}
+
+#toJSON_st_read <- function(item) {
+#  jsonlite::toJSON(item, auto_unbox = TRUE) %>%
+#    sf::st_read(quiet = TRUE)
+#}
 
 check_response <- function(response) {
   if (response$status != 200) {

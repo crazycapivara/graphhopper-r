@@ -6,8 +6,9 @@ gh_get_spt <- function(start_point, time_limit = 600,
     time_limit = time_limit,
     columns = paste0(columns, collapse = ",")
   )
-  response <- httr::GET(get_api_url(), path = "spt", query = query)
-  suppressMessages(httr::content(response))
+  response <- httr::GET(get_api_url(), path = ENDPOINTS$spt, query = query)
+  suppressMessages(httr::content(response)) %>%
+    set_gh_class("gh_spt")
 }
 
 #"?point=", START_POINT$lat, ",", START_POINT$lng,
