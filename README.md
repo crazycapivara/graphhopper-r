@@ -26,15 +26,20 @@ Run your own GraphHopper instance (Berlin):
 docker run --name gh --rm -p 8989:8989 -d graphhopper/graphhopper:2.0
 ```
 
-Get a route in Berlin:
+### Setup
 
 ``` r
 library(graphhopper)
 
-# Setup
 API_URL <- "http://localhost:8989"
 gh_set_api_url(API_URL)
+```
 
+### Route
+
+Get a route in Berlin:
+
+``` r
 start_point <- c(52.592204, 13.414307)
 end_point <- c(52.539614, 13.364868)
 
@@ -53,7 +58,7 @@ ggplot(data = route) +
   theme_bw()
 ```
 
-![](man/figures/README-example-1.png)
+![](man/figures/README-route-example-1.png)
 
 ``` r
 
@@ -73,7 +78,7 @@ ggplot(data = route2) +
   theme_bw()
 ```
 
-![](man/figures/README-example-2.png)
+![](man/figures/README-route-example-2.png)
 
 ``` r
 
@@ -86,8 +91,11 @@ sf::st_coordinates(route2)[, c("X", "Y")] %>%
 #> 4 13.41539 52.59004
 #> 5 13.41599 52.59032
 #> 6 13.41942 52.59145
+```
 
-# Shortest path tree
+### Shortest path tree
+
+``` r
 start_point <- c(52.53961, 13.36487)
 
 points_sf <- gh_get_spt(start_point, time_limit = 180) %>%
@@ -99,4 +107,4 @@ ggplot() +
   theme_bw()
 ```
 
-![](man/figures/README-example-3.png)
+![](man/figures/README-spt-example-1.png)
