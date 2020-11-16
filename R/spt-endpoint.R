@@ -1,6 +1,6 @@
 #' Get the shortest path tree for a given start point
 #' @param start_point The start point as (lon, lat) pair.
-#' @param The travel time limit in seconds.
+#' @param time_limit The travel time limit in seconds.
 #' @param columns The columns that should be returned.
 #' @export
 gh_get_spt <- function(start_point, time_limit = 600,

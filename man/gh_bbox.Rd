@@ -13,7 +13,7 @@ gh_bbox(data)
 \method{gh_bbox}{gh_info}(data)
 }
 \arguments{
-\item{data}{A \code{gh_route} or \link{gh_info} object.}
+\item{data}{A \code{gh_route} or \code{gh_info} object.}
 }
 \description{
 Extract the bounding box from an gh object
