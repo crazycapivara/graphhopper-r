@@ -1,7 +1,17 @@
 #' @export
 gh_bbox <- function(content) {
+  UseMethod("gh_bbox", content)
+}
+
+#' @export
+gh_bbox.gh_route <- function(content) {
   content$paths[[1]]$bbox %>%
     unlist()
+}
+
+#' @export
+gh_bbox.gh_info <- function(content) {
+  content$bbox %>% unlist()
 }
 
 #' @export
