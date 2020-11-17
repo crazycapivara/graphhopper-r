@@ -34,11 +34,16 @@ gh_instructions <- function(data) {
     dplyr::bind_rows()
 }
 
+#' Extract the points from a gh route object
+#' @param data A \code{gh_route} object.
+#' @export
+gh_points <- function(data) {
+  path <- data$paths[[1]]
+  googlePolylines::decode(path$points)[[1]][, c("lon", "lat")] %>%
+    dplyr::mutate(gh_id = (1:length(lon) - 1))
+}
+
+# Obselete?
 gh_as_sf_points <- function(data) {
-  #path <- data$paths[[1]]
-  #points_sf <- googlePolylines::decode(path$points)[[1]][, c("lon", "lat")] %>%
-  #  sf::st_as_sf(coords = c("lon", "lat"), crs = 4326)
-  #points_sf$gh_id <- 1:nrow(points_sf) - 1
-  #points_sf
   gh_as_sf(data, geom_type = "point")
 }
