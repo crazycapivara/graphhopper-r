@@ -12,7 +12,8 @@ gh_get_spt(start_point, time_limit = 600, columns = c("longitude",
 
 \item{time_limit}{The travel time limit in seconds.}
 
-\item{columns}{The columns that should be returned.}
+\item{columns}{The columns that should be returned.
+See \link{gh_available_spt_columns} for available columns.}
 }
 \description{
 Get the shortest path tree for a given start point
