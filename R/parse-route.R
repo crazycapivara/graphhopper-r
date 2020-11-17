@@ -21,17 +21,22 @@ gh_bbox.gh_info <- function(data) {
 
 #' Extract the instructions from a gh route object
 #' @param data A \code{gh_route} object.
+#' @param instructions_only Whether to return the instructions without the corresponding points.
 #' @seealso \link{gh_get_route}
 #' @export
-gh_instructions <- function(data) {
+gh_instructions <- function(data, instructions_only = FALSE) {
   path <- data$paths[[1]]
-  lapply(path$instructions, function(x) {
+  instructions <- lapply(path$instructions, function(x) {
     x$start_id <- x$interval[[1]]
     x$end_id <- x$interval[[2]]
     x$interval <- NULL
     tibble::as_tibble(x)
   }) %>%
     dplyr::bind_rows()
+  if (instructions_only) return(instructions)
+
+  gh_points(data) %>%
+    dplyr::inner_join(instructions, by = c(gh_id = "start_id"))
 }
 
 #' Extract the points from a gh route object

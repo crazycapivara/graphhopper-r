@@ -4,10 +4,12 @@
 \alias{gh_instructions}
 \title{Extract the instructions from a gh route object}
 \usage{
-gh_instructions(data)
+gh_instructions(data, instructions_only = FALSE)
 }
 \arguments{
 \item{data}{A \code{gh_route} object.}
+
+\item{instructions_only}{Whether to return the instructions without the corresponding points.}
 }
 \description{
 Extract the instructions from a gh route object
