@@ -45,7 +45,7 @@ gh_instructions <- function(data, instructions_only = FALSE) {
 gh_points <- function(data) {
   path <- data$paths[[1]]
   googlePolylines::decode(path$points)[[1]][, c("lon", "lat")] %>%
-    dplyr::mutate(gh_id = (1:length(lon) - 1))
+    dplyr::mutate(gh_id = (1:nrow(.) - 1))
 }
 
 # Obselete?
