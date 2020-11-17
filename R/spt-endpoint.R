@@ -34,6 +34,26 @@ gh_spt_columns <- function(longitude = TRUE, latitude = TRUE,
   columns[!is.na(columns)]
 }
 
+#' Build lines from gh spt opbject
+#' @param data A \code{gh_spt} object.
+#' @export
+gh_spt_as_linestrings_sf <- function(data) {
+  data <- data[!is.na(data$prev_longitude), ]
+  lines_sf <- lapply(1:nrow(data), function(i) build_linestring(data[i, SPT_COORD_COLUMNS])) %>%
+    sf::st_sfc(crs = 4326) %>%
+    sf::st_sf()
+  dplyr::bind_cols(
+    lines_sf,
+    data[, -which(names(data) %in% SPT_COORD_COLUMNS)]
+  )
+}
+
+# Utils
+build_linestring <- function(row) {
+  matrix(unlist(row), ncol = 2, byrow = TRUE) %>%
+    sf::st_linestring()
+}
+
 #"?point=", START_POINT$lat, ",", START_POINT$lng,
 #"&time_limit=", TIME_LIMT,
 #"&columns=prev_longitude,prev_latitude,longitude,latitude,time"

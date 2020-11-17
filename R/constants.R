@@ -12,3 +12,8 @@ AVAILABLE_SPT_COLUMNS <- c(
   "longitude", "latitude", "time", "distance",
   "prev_longitude", "prev_latitude", "prev_time", "prev_distance"
 )
+
+SPT_COORD_COLUMNS <- c(
+  "prev_longitude", "prev_latitude",
+  "longitude", "latitude"
+)
