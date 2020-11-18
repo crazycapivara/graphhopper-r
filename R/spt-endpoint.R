@@ -6,7 +6,7 @@
 #'   Ignored if \code{distance_limit > 0}.
 #' @param distance_limit The distance limit in meters.
 #' @param columns The columns that should be returned.
-#' @param reverse_flow Whether to change the flow direction.
+#' @param reverse_flow Use \code{reverse_flow = TRUE} to change the flow direction.
 #' @param profile The profile for which the spt should be calculated.
 #' @param
 #'   See \link{gh_available_spt_columns} for available columns.

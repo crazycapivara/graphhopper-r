@@ -12,14 +12,12 @@ gh_as_sf <- function(data, ...) {
 #'   with ids corresponding to the instruction ids.
 #' @export
 gh_as_sf.gh_route <- function(data, ..., geom_type = c("linestring", "point")) {
-  path <- data$paths[[1]]
-  coords_df <- googlePolylines::decode(path$points)[[1]][, c("lon", "lat")]
   if (match.arg(geom_type) == "point") {
-    points_sf <- sf::st_as_sf(coords_df, coords = c("lon", "lat"), crs = 4326)
-    points_sf$gh_id <- 1:nrow(points_sf) - 1
-    return(points_sf)
+    return(sf::st_as_sf(gh_points(data), coords = c("lon", "lat"), crs = 4326))
   }
 
+  path <- data$paths[[1]]
+  coords_df <- googlePolylines::decode(path$points)[[1]][, c("lon", "lat")]
   line_sfc <- as.matrix(coords_df) %>%
     sf::st_linestring() %>%
     sf::st_sfc(crs = 4326)

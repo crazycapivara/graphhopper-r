@@ -18,7 +18,7 @@ Ignored if \code{distance_limit > 0}.}
 
 \item{columns}{The columns that should be returned.}
 
-\item{reverse_flow}{Whether to change the flow direction.}
+\item{reverse_flow}{Use \code{reverse_flow = TRUE} to change the flow direction.}
 
 \item{profile}{The profile for which the spt should be calculated.}
 
