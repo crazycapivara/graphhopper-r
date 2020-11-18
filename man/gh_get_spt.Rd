@@ -4,16 +4,25 @@
 \alias{gh_get_spt}
 \title{Get the shortest path tree for a given start point}
 \usage{
-gh_get_spt(start_point, time_limit = 600, columns = c("longitude",
-  "latitude", "time", "distance", "prev_longitude", "prev_latitude"))
+gh_get_spt(start_point, time_limit = 600, distance_limit = -1,
+  columns = c("longitude", "latitude", "time", "distance"),
+  reverse_flow = FALSE, profile = "car")
 }
 \arguments{
 \item{start_point}{The start point as (lon, lat) pair.}
 
-\item{time_limit}{The travel time limit in seconds.}
+\item{time_limit}{The travel time limit in seconds.
+Ignored if \code{distance_limit > 0}.}
 
-\item{columns}{The columns that should be returned.
-See \link{gh_available_spt_columns} for available columns.}
+\item{distance_limit}{The distance limit in meters.}
+
+\item{columns}{The columns that should be returned.}
+
+\item{reverse_flow}{Whether to change the flow direction.}
+
+\item{profile}{The profile for which the spt should be calculated.}
+
+\item{See}{\link{gh_available_spt_columns} for available columns.}
 }
 \description{
 Get the shortest path tree for a given start point

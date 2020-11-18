@@ -17,3 +17,6 @@ just its content.}
 \description{
 Get a route for a given set of points
 }
+\seealso{
+\url{https://docs.graphhopper.com/#tag/Routing-API} for optional parameters.
+}

@@ -21,11 +21,11 @@ set_gh_class <- function(x, class_name = c("gh_route", "gh_spt", "gh_info")) {
 #    sf::st_read(quiet = TRUE)
 #}
 
-check_response <- function(response) {
+is_request_error <- function(response) {
   if (response$status != 200) {
-    message("Something went wrong.")
-    return(response)
+    warning("Something went wrong. Returning (raw) response object.")
+    return(TRUE)
   }
 
-  httr::content(response)
+  FALSE
 }

@@ -3,6 +3,7 @@
 #' @param ... Optional parameters that are passed to the query.
 #' @param response_only Whether to return the raw response object instead of
 #'   just its content.
+#' @seealso \url{https://docs.graphhopper.com/#tag/Routing-API} for optional parameters.
 #' @export
 gh_get_route <- function(points, ..., response_only = FALSE) {
   points <- lapply(points, as_point_str)
