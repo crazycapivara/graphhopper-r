@@ -20,9 +20,8 @@ Ignored if \code{distance_limit > 0}.}
 
 \item{reverse_flow}{Use \code{reverse_flow = TRUE} to change the flow direction.}
 
-\item{profile}{The profile for which the spt should be calculated.}
-
-\item{See}{\link{gh_available_spt_columns} for available columns.}
+\item{profile}{The profile for which the spt should be calculated.
+See \link{gh_available_spt_columns} for available columns.}
 }
 \description{
 Get the shortest path tree for a given start point

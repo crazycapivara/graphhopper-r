@@ -8,7 +8,6 @@
 #' @param columns The columns that should be returned.
 #' @param reverse_flow Use \code{reverse_flow = TRUE} to change the flow direction.
 #' @param profile The profile for which the spt should be calculated.
-#' @param
 #'   See \link{gh_available_spt_columns} for available columns.
 #' @export
 gh_get_spt <- function(start_point, time_limit = 600,
