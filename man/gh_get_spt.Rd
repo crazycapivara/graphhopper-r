@@ -5,8 +5,7 @@
 \title{Get the shortest path tree for a given start point}
 \usage{
 gh_get_spt(start_point, time_limit = 600, distance_limit = -1,
-  columns = c("longitude", "latitude", "time", "distance"),
-  reverse_flow = FALSE, profile = "car")
+  columns = gh_spt_columns(), reverse_flow = FALSE, profile = "car")
 }
 \arguments{
 \item{start_point}{The start point as (lon, lat) pair.}
@@ -16,7 +15,8 @@ Ignored if \code{distance_limit > 0}.}
 
 \item{distance_limit}{The distance limit in meters.}
 
-\item{columns}{The columns that should be returned.}
+\item{columns}{The columns that should be returned. See \link{gh_spt_columns} and
+\link{gh_available_spt_columns} for available columns.}
 
 \item{reverse_flow}{Use \code{reverse_flow = TRUE} to change the flow direction.}
 

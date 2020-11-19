@@ -5,14 +5,15 @@
 #' @param time_limit The travel time limit in seconds.
 #'   Ignored if \code{distance_limit > 0}.
 #' @param distance_limit The distance limit in meters.
-#' @param columns The columns that should be returned.
+#' @param columns The columns that should be returned. See \link{gh_spt_columns} and
+#'   \link{gh_available_spt_columns} for available columns.
 #' @param reverse_flow Use \code{reverse_flow = TRUE} to change the flow direction.
 #' @param profile The profile for which the spt should be calculated.
 #'   See \link{gh_available_spt_columns} for available columns.
 #' @export
 gh_get_spt <- function(start_point, time_limit = 600,
                        distance_limit = -1,
-                       columns = c("longitude", "latitude", "time", "distance"),
+                       columns = gh_spt_columns(),
                        reverse_flow = FALSE, profile = "car") {
   query <-list(
     point = as_point_str(start_point),
