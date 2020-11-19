@@ -3,14 +3,21 @@
 graphhopper-R
 =============
 
-[![Travis build status](https://travis-ci.org/crazycapivara/graphhopper-r.svg?branch=master)](https://travis-ci.org/crazycapivara/graphhopper-r) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+<!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/graphhopper)](https://CRAN.R-project.org/package=graphhopper) [![Travis build status](https://travis-ci.org/crazycapivara/graphhopper-r.svg?branch=master)](https://travis-ci.org/crazycapivara/graphhopper-r) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) <!-- badges: end -->
 
 `graphhopper` - An R Interace to the [graphhopper](https://www.graphhopper.com/) API
 
 Installation
 ------------
 
-You can install the latest version of `graphhopper` from github with:
+Install the release version from [CRAN](https://cran.r-project.org/) with:
+
+``` r
+install.packages("mapboxer")
+```
+
+Install the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("remotes")
@@ -20,7 +27,7 @@ remotes::install_github("crazycapivara/graphhopper-r")
 Get started
 -----------
 
-Run your own GraphHopper instance (Berlin):
+Run your own GraphHopper instance (with data of Berlin):
 
 ``` bash
 docker run --name gh --rm -p 8989:8989 -d graphhopper/graphhopper:2.0
