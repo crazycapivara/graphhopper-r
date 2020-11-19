@@ -17,6 +17,8 @@ Imports:
   dplyr
 Suggests:
     sf,
+    ggplot2,
+    leaflet,
     testthat
 RoxygenNote: 6.1.1
 URL: https://github.com/crazycapivara/graphhopper-r

@@ -48,6 +48,14 @@ gh_points <- function(data) {
     dplyr::mutate(gh_id = (1:nrow(.) - 1))
 }
 
+#' Extract time and distance from a gh route object
+#' @param data A \code{gh_route} object.
+#' @export
+gh_time_distance <- function(data) {
+  path <- data$paths[[1]]
+  list(time = path$time, distance = path$distance)
+}
+
 # Obselete?
 gh_as_sf_points <- function(data) {
   gh_as_sf(data, geom_type = "point")
