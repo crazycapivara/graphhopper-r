@@ -102,29 +102,15 @@ gh_points(route2) %>%
 #> 5 13.41599 52.59032     4
 #> 6 13.41942 52.59145     5
 
-gh_instructions(route2) %>%
+gh_instructions(route2)[, c("lon", "lat", "gh_id", "text", "distance")] %>%
   head()
-#>        lon      lat gh_id distance heading sign
-#> 1 13.41422 52.59234     0   72.248  250.06    0
-#> 2 13.41321 52.59212     1  296.761      NA   -2
-#> 3 13.41483 52.58964     2  373.025      NA   -3
-#> 4 13.41942 52.59145     5  678.120      NA    2
-#> 5 13.42352 52.58588     8  556.120      NA   -2
-#> 6 13.43019 52.58851    15  619.849      NA    2
-#>                                     text  time          street_name end_id
-#> 1        Continue onto Buchholzer Straße 13004    Buchholzer Straße      1
-#> 2       Turn left onto Buchholzer Straße 53416    Buchholzer Straße      2
-#> 3 Turn sharp left onto Buchholzer Straße 29840    Buchholzer Straße      5
-#> 4         Turn right onto Grumbkowstraße 54248       Grumbkowstraße      8
-#> 5    Turn left onto Blankenburger Straße 47724 Blankenburger Straße     15
-#> 6      Turn right onto Pasewalker Straße 50063    Pasewalker Straße     18
-#>   last_heading
-#> 1           NA
-#> 2           NA
-#> 3           NA
-#> 4           NA
-#> 5           NA
-#> 6           NA
+#>        lon      lat gh_id                                   text distance
+#> 1 13.41422 52.59234     0        Continue onto Buchholzer Straße   72.248
+#> 2 13.41321 52.59212     1       Turn left onto Buchholzer Straße  296.761
+#> 3 13.41483 52.58964     2 Turn sharp left onto Buchholzer Straße  373.025
+#> 4 13.41942 52.59145     5         Turn right onto Grumbkowstraße  678.120
+#> 5 13.42352 52.58588     8    Turn left onto Blankenburger Straße  556.120
+#> 6 13.43019 52.58851    15      Turn right onto Pasewalker Straße  619.849
 ```
 
 ### Shortest path tree

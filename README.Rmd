@@ -86,7 +86,7 @@ ggplot(data = gh_as_sf(route2)) +
 gh_points(route2) %>%
   head()
 
-gh_instructions(route2) %>%
+gh_instructions(route2)[, c("lon", "lat", "gh_id", "text", "distance")] %>%
   head()
 ```
 
