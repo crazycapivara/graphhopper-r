@@ -107,7 +107,7 @@ start_point <- c(52.53961, 13.36487)
 
 points_sf <- gh_get_spt(start_point, time_limit = 180) %>%
   gh_as_sf() %>%
-  dplyr::mutate(time = as.integer(time / 1000 / 60))
+  dplyr::mutate(time = (time / 1000 / 60))
 
 ggplot() +
   geom_sf(data = points_sf, aes(colour = time), size = 0.5) +
@@ -119,11 +119,13 @@ ggplot() +
 Also query previous nodes to plot the network:
 
 ``` r
-columns <- gh_spt_columns(
+(columns <- gh_spt_columns(
   prev_longitude = TRUE,
   prev_latitude = TRUE,
   prev_time = TRUE
-)
+))
+#> [1] "longitude"      "latitude"       "time"           "distance"      
+#> [5] "prev_longitude" "prev_latitude"  "prev_time"
 
 lines_sf <- gh_get_spt(end_point, time_limit = 240, columns = columns) %>%
   dplyr::mutate(mean_time = ((time + prev_time) / 2) / 1000 / 60) %>%
