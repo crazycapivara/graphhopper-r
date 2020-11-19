@@ -1,7 +1,7 @@
 Package: graphhopper
-Title: An R Interface to GraphHopper
-Version: 0.0.1.9000
-Date: 2020-11-15
+Title: An R Interface to GraphHopper APIs
+Version: 0.1.0
+Date: 2020-11-19
 Maintainer: Stefan Kuethe <crazycapivara@gmail.com>
 Authors@R: person("Stefan", "Kuethe", role = c("aut", "cre"), email = "crazycapivara@gmail.com")
 Description: Accesses the GraphHopper API.
@@ -18,7 +18,6 @@ Imports:
 Suggests:
     sf,
     ggplot2,
-    leaflet,
     testthat
 RoxygenNote: 6.1.1
 URL: https://github.com/crazycapivara/graphhopper-r
