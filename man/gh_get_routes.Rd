@@ -20,7 +20,7 @@ that are used as endpoints. Needs (lat, lon) order.}
 Internally it just calls \link{gh_get_route} sevaral times.
 }
 \examples{
-#\dontrun{
+\dontrun{
 start_point <- c(52.519772, 13.392334)
 
 end_points <- rbind(
@@ -44,5 +44,5 @@ library(leaflet)
 leaflet() \%>\%
   addProviderTiles(providers$Stamen.TonerBackground) \%>\%
   addPolylines(data = routes_sf, color = "red", weight = 2)
-#}
+}
 }
