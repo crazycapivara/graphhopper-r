@@ -6,7 +6,9 @@ graphhopper-R
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/graphhopper)](https://CRAN.R-project.org/package=graphhopper) [![Travis build status](https://travis-ci.org/crazycapivara/graphhopper-r.svg?branch=master)](https://travis-ci.org/crazycapivara/graphhopper-r) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) <!-- badges: end -->
 
-`graphhopper` - An R Interace to the [graphhopper](https://www.graphhopper.com/) API
+An R Interace to [GraphHopper](https://www.graphhopper.com/) APIs
+
+The purpose of {graphhopper} is to provide a quick and easy access to GraphHopper APIs. You can easily convert responses to simple feature (sf) objects.
 
 Installation
 ------------
@@ -14,7 +16,7 @@ Installation
 Install the release version from [CRAN](https://cran.r-project.org/) with:
 
 ``` r
-install.packages("mapboxer")
+install.packages("graphhopper")
 ```
 
 Install the development version from [GitHub](https://github.com/) with:
