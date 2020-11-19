@@ -9,5 +9,5 @@ test_that("extract instructions", {
 
   # Assert
   expect_is(instructions, "data.frame")
-  expect_true(all(c("start_id", "end_id", "text") %in% names(instructions)))
+  expect_true(all(c("gh_start_id", "gh_end_id", "text") %in% names(instructions)))
 })

@@ -54,6 +54,12 @@ library(graphhopper)
 
 API_URL <- "http://localhost:8989"
 gh_set_api_url(API_URL)
+
+info <- gh_get_info()
+
+info$version
+info$data_date
+gh_bbox(info)
 ```
 
 ### Route
@@ -69,7 +75,7 @@ end_point <- c(52.539614, 13.364868)
 
 ggplot(data = route) +
   geom_sf() +
-  theme_bw()
+  theme(axis.text.x = element_text(angle = 45))
 
 route$time
 
@@ -81,12 +87,12 @@ gh_time_distance(route2)
 
 ggplot(data = gh_as_sf(route2)) +
   geom_sf() +
-  theme_bw()
+  theme(axis.text.x = element_text(angle = 45))
 
 gh_points(route2) %>%
   head()
 
-gh_instructions(route2)[, c("lon", "lat", "gh_id", "text", "distance")] %>%
+gh_instructions(route2)[, c("lon", "lat", "gh_id", "gh_end_id", "text", "distance")] %>%
   head()
 ```
 
@@ -101,7 +107,7 @@ points_sf <- gh_get_spt(start_point, time_limit = 180) %>%
 
 ggplot() +
   geom_sf(data = points_sf, aes(colour = time), size = 0.5) +
-  theme_bw()
+  theme(axis.text.x = element_text(angle = 45))
 ```
 
 Also query previous nodes to plot the network:

@@ -27,8 +27,8 @@ gh_bbox.gh_info <- function(data) {
 gh_instructions <- function(data, instructions_only = FALSE) {
   path <- data$paths[[1]]
   instructions <- lapply(path$instructions, function(x) {
-    x$start_id <- x$interval[[1]]
-    x$end_id <- x$interval[[2]]
+    x$gh_start_id <- x$interval[[1]]
+    x$gh_end_id <- x$interval[[2]]
     x$interval <- NULL
     tibble::as_tibble(x)
   }) %>%
@@ -36,7 +36,7 @@ gh_instructions <- function(data, instructions_only = FALSE) {
   if (instructions_only) return(instructions)
 
   gh_points(data) %>%
-    dplyr::inner_join(instructions, by = c(gh_id = "start_id"))
+    dplyr::inner_join(instructions, by = c(gh_id = "gh_start_id"))
 }
 
 #' Extract the points from a gh route object

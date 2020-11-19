@@ -40,6 +40,15 @@ library(graphhopper)
 
 API_URL <- "http://localhost:8989"
 gh_set_api_url(API_URL)
+
+info <- gh_get_info()
+
+info$version
+#> [1] "2.0"
+info$data_date
+#> [1] "2020-11-10T21:42:03Z"
+gh_bbox(info)
+#> [1] 13.06979 52.33306 13.76408 52.67962
 ```
 
 ### Route
@@ -62,7 +71,7 @@ end_point <- c(52.539614, 13.364868)
 
 ggplot(data = route) +
   geom_sf() +
-  theme_bw()
+  theme(axis.text.x = element_text(angle = 45))
 ```
 
 ![](man/figures/README-route-example-1.png)
@@ -85,7 +94,7 @@ gh_time_distance(route2)
 
 ggplot(data = gh_as_sf(route2)) +
   geom_sf() +
-  theme_bw()
+  theme(axis.text.x = element_text(angle = 45))
 ```
 
 ![](man/figures/README-route-example-2.png)
@@ -102,15 +111,22 @@ gh_points(route2) %>%
 #> 5 13.41599 52.59032     4
 #> 6 13.41942 52.59145     5
 
-gh_instructions(route2)[, c("lon", "lat", "gh_id", "text", "distance")] %>%
+gh_instructions(route2)[, c("lon", "lat", "gh_id", "gh_end_id", "text", "distance")] %>%
   head()
-#>        lon      lat gh_id                                   text distance
-#> 1 13.41422 52.59234     0        Continue onto Buchholzer Straße   72.248
-#> 2 13.41321 52.59212     1       Turn left onto Buchholzer Straße  296.761
-#> 3 13.41483 52.58964     2 Turn sharp left onto Buchholzer Straße  373.025
-#> 4 13.41942 52.59145     5         Turn right onto Grumbkowstraße  678.120
-#> 5 13.42352 52.58588     8    Turn left onto Blankenburger Straße  556.120
-#> 6 13.43019 52.58851    15      Turn right onto Pasewalker Straße  619.849
+#>        lon      lat gh_id gh_end_id                                   text
+#> 1 13.41422 52.59234     0         1        Continue onto Buchholzer Straße
+#> 2 13.41321 52.59212     1         2       Turn left onto Buchholzer Straße
+#> 3 13.41483 52.58964     2         5 Turn sharp left onto Buchholzer Straße
+#> 4 13.41942 52.59145     5         8         Turn right onto Grumbkowstraße
+#> 5 13.42352 52.58588     8        15    Turn left onto Blankenburger Straße
+#> 6 13.43019 52.58851    15        18      Turn right onto Pasewalker Straße
+#>   distance
+#> 1   72.248
+#> 2  296.761
+#> 3  373.025
+#> 4  678.120
+#> 5  556.120
+#> 6  619.849
 ```
 
 ### Shortest path tree
@@ -124,7 +140,7 @@ points_sf <- gh_get_spt(start_point, time_limit = 180) %>%
 
 ggplot() +
   geom_sf(data = points_sf, aes(colour = time), size = 0.5) +
-  theme_bw()
+  theme(axis.text.x = element_text(angle = 45))
 ```
 
 ![](man/figures/README-spt-example-1.png)
