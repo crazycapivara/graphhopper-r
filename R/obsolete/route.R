@@ -1,3 +1,5 @@
+# ### TODO: obsolete file
+
 #' Get the route for a given set of points.
 #' @param points list of points as [lat, lng] pairs
 #' @param ... additional query parameters, see \url{https://docs.graphhopper.com}
@@ -30,7 +32,7 @@ gh_get_route_response <- function(points, ...) {
 }
 
 #' Parse route to linestring.
-#' @param route route (raw) route object, see \code{\link{gh_get_route}}
+#' @param route (raw) route object, see \code{\link{gh_get_route}}
 #' @export
 gh_route_linestring <- function(route) {
   route <- gh_parse_route(route)
@@ -51,6 +53,7 @@ gh_route_coordinates <- function(route) {
   tibble::as_tibble(route$coordinates)
 }
 
+# ### TODO: Do not export this one
 #' Parse route.
 #' @inheritParams gh_route_linestring
 #' @export
@@ -59,12 +62,25 @@ gh_parse_route <- function(route) {
   n <- length(path$points$coordinates[[1]])
   coordinates <- unlist(path$points$coordinates) %>%
     matrix(ncol = n, byrow = TRUE)
-  colnames(coordinates) <- c("lng", "lat")
+  if (n == 3) {
+    colnames(coordinates) <- c("lng", "lat", "alt")
+  } else {
+    colnames(coordinates) <- c("lng", "lat")
+  }
+
   list(
     coordinates = coordinates,
     time = path$time,
     distance = path$distance
   )
+}
+
+gh_route_distance <- function(route) {
+  route$path[[1]]$distance
+}
+
+gh_route_time <- function(route) {
+  route$path[[1]]$time
 }
 
 gh_route_instructions <- function(route) {

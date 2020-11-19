@@ -5,67 +5,128 @@ output: github_document
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r setup, include = FALSE}
+library(ggplot2)
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "400px"
+  fig.path = "man/figures/README-"
+  #,out.width = "400px"
 )
 ```
 # graphhopper-R
 
+<!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/graphhopper)](https://CRAN.R-project.org/package=graphhopper)
 [![Travis build status](https://travis-ci.org/crazycapivara/graphhopper-r.svg?branch=master)](https://travis-ci.org/crazycapivara/graphhopper-r)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+<!-- badges: end -->
 
-`graphhopper` - An R Interace to the [graphhopper](https://www.graphhopper.com/) API
+An R Interace to [GraphHopper](https://www.graphhopper.com/) APIs
+
+The purpose of {graphhopper} is to provide a quick and easy access to GraphHopper
+APIs. You can easily convert responses to simple feature (sf) objects.
 
 ## Installation
 
-You can install the latest version of `graphhopper` from github with:
+Install the release version from [CRAN](https://cran.r-project.org/) with:
 
 ```r
-# install.packages("devtools")
-devtools::install_github("crazycapivara/graphhopper-r")
+install.packages("graphhopper")
+```
+
+Install the development version from [GitHub](https://github.com/) with:
+
+```r
+# install.packages("remotes")
+remotes::install_github("crazycapivara/graphhopper-r")
 ```
 
 ## Get started
 
-Run your own graphhoper API (Berlin):
+Run your own GraphHopper instance (with data of Berlin):
 
 ```bash
-docker run -p 8989:8989 -d crazycapivara/graphhopper
+docker run --name gh --rm -p 8989:8989 -d graphhopper/graphhopper:2.0
 ```
 
-Get a route in Berlin:
+### Setup
 
 ```{r example}
 library(graphhopper)
 
-# Setup
-API_URL <- "http://localhost:8989/"
+API_URL <- "http://localhost:8989"
 gh_set_api_url(API_URL)
 
+info <- gh_get_info()
+
+info$version
+info$data_date
+gh_bbox(info)
+```
+
+### Route
+
+Get a route in Berlin:
+
+```{r route-example}
 start_point <- c(52.592204, 13.414307)
 end_point <- c(52.539614, 13.364868)
 
 (route <- gh_get_route(list(start_point, end_point)) %>%
-    gh_route_linestring())
+    gh_as_sf())
 
-sf::st_geometry(route) %>%
-  plot()
+ggplot(data = route) +
+  geom_sf() +
+  theme(axis.text.x = element_text(angle = 45))
 
 route$time
 
 via_point <- c(52.545461, 13.435249)
 
-route2 <- gh_get_route(list(start_point, via_point, end_point), miles = TRUE) %>%
-  gh_route_linestring()
+route2 <- gh_get_route(list(start_point, via_point, end_point))
 
-route2$time
+gh_time_distance(route2)
 
-sf::st_geometry(route2) %>%
-  plot()
+ggplot(data = gh_as_sf(route2)) +
+  geom_sf() +
+  theme(axis.text.x = element_text(angle = 45))
 
-sf::st_coordinates(route2)[, c("X", "Y")] %>%
+gh_points(route2) %>%
   head()
+
+gh_instructions(route2)[, c("lon", "lat", "gh_id", "gh_end_id", "text", "distance")] %>%
+  head()
+```
+
+### Shortest path tree
+
+```{r spt-example}
+start_point <- c(52.53961, 13.36487)
+
+points_sf <- gh_get_spt(start_point, time_limit = 180) %>%
+  gh_as_sf() %>%
+  dplyr::mutate(time = (time / 1000 / 60))
+
+ggplot() +
+  geom_sf(data = points_sf, aes(colour = time), size = 0.5) +
+  theme(axis.text.x = element_text(angle = 45))
+```
+
+Also query previous nodes to plot the network:
+
+```{r spt-example-lines}
+(columns <- gh_spt_columns(
+  prev_longitude = TRUE,
+  prev_latitude = TRUE,
+  prev_time = TRUE
+))
+
+lines_sf <- gh_get_spt(end_point, time_limit = 240, columns = columns) %>%
+  dplyr::mutate(mean_time = ((time + prev_time) / 2) / 1000 / 60) %>%
+  gh_spt_as_linestrings_sf()
+
+ggplot() +
+  geom_sf(data = lines_sf, aes(color = mean_time), size = 1) +
+  theme(axis.text.x = element_text(angle = 45))
 ```
