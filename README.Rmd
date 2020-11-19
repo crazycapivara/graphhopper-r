@@ -75,16 +75,18 @@ route$time
 
 via_point <- c(52.545461, 13.435249)
 
-route2 <- gh_get_route(list(start_point, via_point, end_point), miles = TRUE) %>%
-  gh_as_sf()
+route2 <- gh_get_route(list(start_point, via_point, end_point))
 
-route2$time
+gh_time_distance(route2)
 
-ggplot(data = route2) +
+ggplot(data = gh_as_sf(route2)) +
   geom_sf() +
   theme_bw()
 
-sf::st_coordinates(route2)[, c("X", "Y")] %>%
+gh_points(route2) %>%
+  head()
+
+gh_instructions(route2) %>%
   head()
 ```
 
@@ -104,7 +106,7 @@ ggplot() +
 
 Also query previous nodes to plot the network:
 
-```{r}
+```{r spt-example-lines}
 (columns <- gh_spt_columns(
   prev_longitude = TRUE,
   prev_latitude = TRUE,

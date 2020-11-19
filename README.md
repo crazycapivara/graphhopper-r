@@ -74,13 +74,16 @@ route$time
 
 via_point <- c(52.545461, 13.435249)
 
-route2 <- gh_get_route(list(start_point, via_point, end_point), miles = TRUE) %>%
-  gh_as_sf()
+route2 <- gh_get_route(list(start_point, via_point, end_point))
 
-route2$time
+gh_time_distance(route2)
+#> $time
 #> [1] 1168950
+#> 
+#> $distance
+#> [1] 12843.67
 
-ggplot(data = route2) +
+ggplot(data = gh_as_sf(route2)) +
   geom_sf() +
   theme_bw()
 ```
@@ -89,15 +92,39 @@ ggplot(data = route2) +
 
 ``` r
 
-sf::st_coordinates(route2)[, c("X", "Y")] %>%
+gh_points(route2) %>%
   head()
-#>          X        Y
-#> 1 13.41422 52.59234
-#> 2 13.41321 52.59212
-#> 3 13.41483 52.58964
-#> 4 13.41539 52.59004
-#> 5 13.41599 52.59032
-#> 6 13.41942 52.59145
+#>        lon      lat gh_id
+#> 1 13.41422 52.59234     0
+#> 2 13.41321 52.59212     1
+#> 3 13.41483 52.58964     2
+#> 4 13.41539 52.59004     3
+#> 5 13.41599 52.59032     4
+#> 6 13.41942 52.59145     5
+
+gh_instructions(route2) %>%
+  head()
+#>        lon      lat gh_id distance heading sign
+#> 1 13.41422 52.59234     0   72.248  250.06    0
+#> 2 13.41321 52.59212     1  296.761      NA   -2
+#> 3 13.41483 52.58964     2  373.025      NA   -3
+#> 4 13.41942 52.59145     5  678.120      NA    2
+#> 5 13.42352 52.58588     8  556.120      NA   -2
+#> 6 13.43019 52.58851    15  619.849      NA    2
+#>                                     text  time          street_name end_id
+#> 1        Continue onto Buchholzer Straße 13004    Buchholzer Straße      1
+#> 2       Turn left onto Buchholzer Straße 53416    Buchholzer Straße      2
+#> 3 Turn sharp left onto Buchholzer Straße 29840    Buchholzer Straße      5
+#> 4         Turn right onto Grumbkowstraße 54248       Grumbkowstraße      8
+#> 5    Turn left onto Blankenburger Straße 47724 Blankenburger Straße     15
+#> 6      Turn right onto Pasewalker Straße 50063    Pasewalker Straße     18
+#>   last_heading
+#> 1           NA
+#> 2           NA
+#> 3           NA
+#> 4           NA
+#> 5           NA
+#> 6           NA
 ```
 
 ### Shortest path tree
@@ -136,4 +163,4 @@ ggplot() +
   theme(axis.text.x = element_text(angle = 45))
 ```
 
-![](man/figures/README-unnamed-chunk-1-1.png)
+![](man/figures/README-spt-example-lines-1.png)
