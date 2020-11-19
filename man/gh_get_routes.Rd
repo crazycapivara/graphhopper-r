@@ -18,6 +18,7 @@ that are used as endpoints. Needs (lat, lon) order.}
 }
 \description{
 Internally it just calls \link{gh_get_route} sevaral times.
+See also \link{gh_get_spt}.
 }
 \examples{
 \dontrun{
@@ -38,11 +39,5 @@ time_distance_table <- gh_get_routes(
 
 routes_sf <- gh_get_routes(start_point, end_points, callback = gh_as_sf) \%>\%
   do.call(rbind, .)
-
-library(leaflet)
-
-leaflet() \%>\%
-  addProviderTiles(providers$Stamen.TonerBackground) \%>\%
-  addPolylines(data = routes_sf, color = "red", weight = 2)
 }
 }

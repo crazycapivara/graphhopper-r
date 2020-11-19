@@ -1,5 +1,4 @@
-library(graphhopper)
-
+\dontrun{
 start_point <- c(52.519772, 13.392334)
 
 end_points <- rbind(
@@ -17,9 +16,4 @@ time_distance_table <- gh_get_routes(
 
 routes_sf <- gh_get_routes(start_point, end_points, callback = gh_as_sf) %>%
   do.call(rbind, .)
-
-library(leaflet)
-
-leaflet() %>%
-  addProviderTiles(providers$Stamen.TonerBackground) %>%
-  addPolylines(data = routes_sf, color = "red", weight = 2)
+}
