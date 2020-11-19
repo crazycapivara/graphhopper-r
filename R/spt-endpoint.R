@@ -36,15 +36,27 @@ gh_get_spt <- function(start_point, time_limit = 600,
 #' @export
 gh_available_spt_columns <- function() AVAILABLE_SPT_COLUMNS
 
+#' Choose columns to be returned by the spt query
+#'
+#' Times are returned in milliseconds and distances in meters.
+#' @param longitude,latitude The longitude, latitude of the node.
+#' @param time,distance The travel time, distance to the node.
+#' @param prev_longitude,prev_latitude The longitude, latitude of the previous node.
+#' @param prev_time,prev_distance The travel time, distance to the previous node.
+#' @param node_id,prev_node_id The ID of the node, previous node.
+#' @param edge_id,prev_edge_id The ID of the edge, previous edge.
+#' @export
 gh_spt_columns <- function(longitude = TRUE, latitude = TRUE,
                            time = TRUE, distance = TRUE,
                            prev_longitude = FALSE, prev_latitude = FALSE,
                            prev_time = FALSE, prev_distance = FALSE,
                            node_id = FALSE, prev_node_id = FALSE,
                            edge_id = FALSE, prev_edge_id = FALSE) {
-  columns <- sapply(ls(environment()), function(x) ifelse(get(x), x, NA)) %>%
-    unname()
-  columns[!is.na(columns)]
+  #columns <- sapply(ls(environment()), function(x) ifelse(get(x), x, NA)) %>%
+  #  unname()
+  #columns[!is.na(columns)]
+  columns <- unlist(as.list(environment()))
+  names(columns)[which(columns)]
 }
 
 #' Build lines from gh spt opbject
