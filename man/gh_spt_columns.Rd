@@ -2,7 +2,7 @@
 % Please edit documentation in R/spt-endpoint.R
 \name{gh_spt_columns}
 \alias{gh_spt_columns}
-\title{Choose columns to be returned by the spt query}
+\title{Select the columns to be returned by a spt request}
 \usage{
 gh_spt_columns(longitude = TRUE, latitude = TRUE, time = TRUE,
   distance = TRUE, prev_longitude = FALSE, prev_latitude = FALSE,

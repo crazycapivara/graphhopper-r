@@ -1,7 +1,7 @@
 #' Convert a gh object into an sf object
 #' @param data A \code{gh_route} or \code{gh_spt} object.
 #' @param ... ignored
-#' @seealso \link{gh_get_route}, \link{gh_get_spt}
+#' @example examples/api-reference/gh-get-route.R
 #' @export
 gh_as_sf <- function(data, ...) {
   UseMethod("gh_as_sf", data)

@@ -2,20 +2,19 @@
 % Please edit documentation in R/info-endpoint.R
 \name{gh_get_info}
 \alias{gh_get_info}
-\title{Get information about the GraphHooper instance}
+\title{Get information about the GraphHopper instance}
 \usage{
 gh_get_info()
 }
 \description{
-Get information about the GraphHooper instance
+Get information about the GraphHopper instance
 }
 \examples{
 \dontrun{
-  gh_get_info()$data_date
+info <- gh_get_info()
 
-  gh_get_info()$version
-
-  gh_get_info() \%>\%
-    gh_bbox()
+message(info$version)
+message(info$data_date)
+print(gh_bbox(info))
 }
 }

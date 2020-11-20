@@ -1,6 +1,5 @@
-#' Extract the bounding box from an gh object
+#' Extract the bounding box from a gh object
 #' @param data A \code{gh_route} or \code{gh_info} object.
-#' @seealso \link{gh_get_route}, \link{gh_get_info}
 #' @export
 gh_bbox <- function(data) {
   UseMethod("gh_bbox", data)

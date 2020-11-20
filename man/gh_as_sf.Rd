@@ -24,6 +24,12 @@ with ids corresponding to the instruction ids.}
 \description{
 Convert a gh object into an sf object
 }
-\seealso{
-\link{gh_get_route}, \link{gh_get_spt}
+\examples{
+\dontrun{
+start_point <- c(52.592204, 13.414307)
+end_point <- c(52.539614, 13.364868)
+
+route <- gh_get_route(list(start_point, end_point)) \%>\%
+  gh_as_sf()
+}
 }

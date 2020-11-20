@@ -2,7 +2,7 @@
 % Please edit documentation in R/spt-endpoint.R
 \name{gh_spt_as_linestrings_sf}
 \alias{gh_spt_as_linestrings_sf}
-\title{Build lines from gh spt opbject}
+\title{Build lines from a gh spt object}
 \usage{
 gh_spt_as_linestrings_sf(data)
 }
@@ -10,5 +10,19 @@ gh_spt_as_linestrings_sf(data)
 \item{data}{A \code{gh_spt} object.}
 }
 \description{
-Build lines from gh spt opbject
+Build lines from a gh spt object
+}
+\examples{
+\dontrun{
+start_point <- c(52.53961, 13.36487)
+
+columns <- gh_spt_columns(
+  prev_longitude = TRUE,
+  prev_latitude = TRUE,
+  prev_time = TRUE
+)
+
+lines_sf <- gh_get_spt(start_point, time_limit = 180, columns = columns) \%>\%
+  gh_spt_as_linestrings_sf()
+}
 }

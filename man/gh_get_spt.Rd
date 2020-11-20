@@ -8,21 +8,34 @@ gh_get_spt(start_point, time_limit = 600, distance_limit = -1,
   columns = gh_spt_columns(), reverse_flow = FALSE, profile = "car")
 }
 \arguments{
-\item{start_point}{The start point as (lon, lat) pair.}
+\item{start_point}{The start point as (lat, lon) pair.}
 
 \item{time_limit}{The travel time limit in seconds.
 Ignored if \code{distance_limit > 0}.}
 
 \item{distance_limit}{The distance limit in meters.}
 
-\item{columns}{The columns that should be returned. See \link{gh_spt_columns} and
+\item{columns}{The columns to be returned. See \link{gh_spt_columns} and
 \link{gh_available_spt_columns} for available columns.}
 
 \item{reverse_flow}{Use \code{reverse_flow = TRUE} to change the flow direction.}
 
-\item{profile}{The profile for which the spt should be calculated.
-See \link{gh_available_spt_columns} for available columns.}
+\item{profile}{The profile for which the spt should be calculated.}
 }
 \description{
 Get the shortest path tree for a given start point
+}
+\examples{
+\dontrun{
+start_point <- c(52.53961, 13.36487)
+
+columns <- gh_spt_columns(
+  prev_longitude = TRUE,
+  prev_latitude = TRUE,
+  prev_time = TRUE
+)
+
+points_sf <- gh_get_spt(start_point, time_limit = 180, columns = columns) \%>\%
+  gh_as_sf()
+}
 }

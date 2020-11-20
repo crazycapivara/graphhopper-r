@@ -2,7 +2,7 @@
 % Please edit documentation in R/core.R
 \name{gh_set_api_url}
 \alias{gh_set_api_url}
-\title{Set GH-API base url.}
+\title{Set gh API base url}
 \usage{
 gh_set_api_url(api_url)
 }
@@ -10,9 +10,12 @@ gh_set_api_url(api_url)
 \item{api_url}{API base url}
 }
 \description{
-Set GH-API base url.
+Set gh API base url
 }
 \note{
 Internally it calls \code{Sys.setenv} to store the API url
-in an environment variable called \code{GH_API_URL}.
+  in an environment variable called \code{GH_API_URL}.
+}
+\examples{
+gh_set_api_url("http://localhost:8989")
 }

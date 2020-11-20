@@ -6,9 +6,9 @@ graphhopper-R
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/graphhopper)](https://CRAN.R-project.org/package=graphhopper) [![Travis build status](https://travis-ci.org/crazycapivara/graphhopper-r.svg?branch=master)](https://travis-ci.org/crazycapivara/graphhopper-r) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) <!-- badges: end -->
 
-An R Interace to [GraphHopper](https://www.graphhopper.com/) APIs
+An R Interface to the [GraphHopper](https://www.graphhopper.com/) Directions API
 
-The purpose of {graphhopper} is to provide a quick and easy access to GraphHopper APIs. You can easily convert responses to simple feature (sf) objects.
+The purpose of {graphhopper} is to provide a quick and easy access to the GraphHopper Directions API. Responses can be converted into simple feature (sf) objects in a convient way.
 
 Installation
 ------------
