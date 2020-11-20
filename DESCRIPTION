@@ -6,7 +6,7 @@ Maintainer: Stefan Kuethe <crazycapivara@gmail.com>
 Authors@R: person("Stefan", "Kuethe", role = c("aut", "cre"), email = "crazycapivara@gmail.com")
 Description: Provides a quick and easy access to the GraphHopper Directions API.
   GraphHopper <https://www.graphhopper.com/> itself is a routing engine based on OpenStreetMap data.
-  API responses can be converted to simple feature (sf) objects in a convient way. 
+  API responses can be converted to simple feature (sf) objects in a convenient way. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
