@@ -9,3 +9,8 @@
 0 errors | 0 warnings | 1 note
 
 * This is a new release.
+
+## Resubmission
+
+In the first submission was a mis-spelled word in the description.
+This is fixed in this submission.
