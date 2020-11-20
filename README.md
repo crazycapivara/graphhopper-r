@@ -10,6 +10,8 @@ An R Interface to the [GraphHopper](https://www.graphhopper.com/) Directions API
 
 The purpose of {graphhopper} is to provide a quick and easy access to the GraphHopper Directions API. Responses can be converted into simple feature (sf) objects in a convenient way. The package is not a complete wrapper of the API. Currently it mainly supports the API also included in [Graphhopper's Open Source routing engine](https://github.com/graphhopper/graphhopper). New features will be added continuously.
 
+Dive into the [documentation here](https://crazycapivara.github.io/graphhopper-r/).
+
 Installation
 ------------
 
