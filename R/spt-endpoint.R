@@ -1,15 +1,15 @@
 # https://github.com/graphhopper/graphhopper/blob/master/web-bundle/src/main/java/com/graphhopper/resources/SPTResource.java
 
 #' Get the shortest path tree for a given start point
-#' @param start_point The start point as (lon, lat) pair.
+#' @param start_point The start point as (lat, lon) pair.
 #' @param time_limit The travel time limit in seconds.
 #'   Ignored if \code{distance_limit > 0}.
 #' @param distance_limit The distance limit in meters.
-#' @param columns The columns that should be returned. See \link{gh_spt_columns} and
+#' @param columns The columns to be returned. See \link{gh_spt_columns} and
 #'   \link{gh_available_spt_columns} for available columns.
 #' @param reverse_flow Use \code{reverse_flow = TRUE} to change the flow direction.
 #' @param profile The profile for which the spt should be calculated.
-#'   See \link{gh_available_spt_columns} for available columns.
+#' @example examples/api-reference/gh-get-spt.R
 #' @export
 gh_get_spt <- function(start_point, time_limit = 600,
                        distance_limit = -1,
@@ -37,7 +37,7 @@ gh_get_spt <- function(start_point, time_limit = 600,
 #' @export
 gh_available_spt_columns <- function() AVAILABLE_SPT_COLUMNS
 
-#' Choose columns to be returned by the spt query
+#' Select the columns to be returned by a spt request
 #'
 #' Times are returned in milliseconds and distances in meters.
 #' @param longitude,latitude The longitude, latitude of the node.
@@ -53,15 +53,13 @@ gh_spt_columns <- function(longitude = TRUE, latitude = TRUE,
                            prev_time = FALSE, prev_distance = FALSE,
                            node_id = FALSE, prev_node_id = FALSE,
                            edge_id = FALSE, prev_edge_id = FALSE) {
-  #columns <- sapply(ls(environment()), function(x) ifelse(get(x), x, NA)) %>%
-  #  unname()
-  #columns[!is.na(columns)]
   columns <- unlist(as.list(environment()))
   names(columns)[which(columns)]
 }
 
-#' Build lines from gh spt opbject
+#' Build lines from a gh spt object
 #' @param data A \code{gh_spt} object.
+#' @example examples/api-reference/gh-get-spt-lines.R
 #' @export
 gh_spt_as_linestrings_sf <- function(data) {
   data <- data[!is.na(data$prev_longitude), ]

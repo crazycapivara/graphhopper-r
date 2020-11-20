@@ -4,7 +4,7 @@
 \alias{gh_bbox}
 \alias{gh_bbox.gh_route}
 \alias{gh_bbox.gh_info}
-\title{Extract the bounding box from an gh object}
+\title{Extract the bounding box from a gh object}
 \usage{
 gh_bbox(data)
 
@@ -16,8 +16,5 @@ gh_bbox(data)
 \item{data}{A \code{gh_route} or \code{gh_info} object.}
 }
 \description{
-Extract the bounding box from an gh object
-}
-\seealso{
-\link{gh_get_route}, \link{gh_get_info}
+Extract the bounding box from a gh object
 }
