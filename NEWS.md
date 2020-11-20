@@ -1,3 +1,8 @@
+# graphhopper 0.1.1
+
+* Updated rdocs
+* `pkgdown` site
+
 # graphhopper 0.1.0
 
 * Rewrite of `route` endpoint
