@@ -7,6 +7,7 @@ utils_get_points <- function() {
 }
 
 test_that("route structure", {
+  skip_if_not(gh_is_avialable())
   skip_on_cran()
   skip_on_travis()
 

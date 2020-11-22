@@ -1,6 +1,7 @@
 context("spt")
 
 test_that("spt endpoint", {
+  skip_if_not(gh_is_avialable())
   skip_on_cran()
   skip_on_travis()
 

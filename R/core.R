@@ -20,3 +20,15 @@ gh_get <- function(path) {
     httr::GET(get_api_url(), path = path, query = list(...))
   }
 }
+
+gh_is_avialable <- function() {
+  tryCatch({
+    httr::GET(get_api_url())
+    invisible(TRUE)
+    },
+    error = function(e) {
+      message(e$message)
+      invisible(FALSE)
+    }
+  )
+}
