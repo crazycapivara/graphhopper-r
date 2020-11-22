@@ -19,6 +19,7 @@ Imports:
   dplyr
 Suggests:
     sf,
+    geojsonsf,
     ggplot2,
     testthat
 RoxygenNote: 6.1.1

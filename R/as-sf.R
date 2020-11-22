@@ -7,9 +7,9 @@ gh_as_sf <- function(data, ...) {
   UseMethod("gh_as_sf", data)
 }
 
-#' @name gh_as_sf
 #' @param geom_type Use \code{geom_type = point} to return the points of the route
 #'   with ids corresponding to the instruction ids.
+#' @name gh_as_sf
 #' @export
 gh_as_sf.gh_route <- function(data, ..., geom_type = c("linestring", "point")) {
   if (match.arg(geom_type) == "point") {
