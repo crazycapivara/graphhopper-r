@@ -2,6 +2,7 @@
 #' @inheritParams gh_get_spt
 #' @param ... Additonal parameters.
 #'   See \url{https://docs.graphhopper.com/#operation/getIsochrone}.
+#' @example examples/api-reference/gh-get-isochrone.R
 #' @export
 gh_get_isochrone <- function(start_point, time_limit = 180, distance_limit = -1, ...) {
   query <- list(
