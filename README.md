@@ -170,3 +170,18 @@ ggplot() +
 ```
 
 ![](man/figures/README-spt-example-lines-1.png)
+
+### Isochrone
+
+``` r
+start_point <- c(52.53961, 13.36487)
+
+isochrone_sf <- gh_get_isochrone(start_point, time_limit = 180) %>%
+  gh_as_sf()
+
+ggplot() +
+  geom_sf(data = isochrone_sf, fill = "yellow") +
+  theme(axis.text.x = element_text(angle = 45))
+```
+
+![](man/figures/README-isochrone-example-1.png)
