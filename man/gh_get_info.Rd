@@ -10,11 +10,11 @@ gh_get_info()
 Get information about the GraphHopper instance
 }
 \examples{
-\dontrun{
-info <- gh_get_info()
+if (FALSE) {
+  info <- gh_get_info()
 
-message(info$version)
-message(info$data_date)
-print(gh_bbox(info))
+  message(info$version)
+  message(info$data_date)
+  print(gh_bbox(info))
 }
 }
