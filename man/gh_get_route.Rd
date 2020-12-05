@@ -18,12 +18,12 @@ just its content.}
 Get a route for a given set of points
 }
 \examples{
-\dontrun{
-start_point <- c(52.592204, 13.414307)
-end_point <- c(52.539614, 13.364868)
+if (FALSE) {
+  start_point <- c(52.592204, 13.414307)
+  end_point <- c(52.539614, 13.364868)
 
-route <- gh_get_route(list(start_point, end_point)) \%>\%
-  gh_as_sf()
+  route_sf <- gh_get_route(list(start_point, end_point)) \%>\%
+    gh_as_sf()
 }
 }
 \seealso{
