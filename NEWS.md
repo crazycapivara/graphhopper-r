@@ -1,5 +1,11 @@
+# graphhopper 0.1.2
+
+* Bug fix `gh` classes (incorrect order of classes caused problems with `dplyr`)
+* `isochrone` endpoint
+
 # graphhopper 0.1.1
 
+* CRAN
 * Updated rdocs
 * `pkgdown` site
 
