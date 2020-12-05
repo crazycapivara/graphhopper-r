@@ -8,7 +8,7 @@ as_point_str <- function(point) {
 }
 
 set_gh_class <- function(x, class_name = c("gh_route", "gh_spt", "gh_info", "gh_isochrone")) {
-  structure(x, class = c(class(x), match.arg(class_name)))
+  structure(x, class = c(match.arg(class_name), class(x)))
 }
 
 #toJSON_fromJSON <- function(item) {
