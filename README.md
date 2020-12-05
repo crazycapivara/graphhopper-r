@@ -7,7 +7,7 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/graphhopper)](https://CRAN.R-project.org/package=graphhopper)
-[![github\_status\_badge](https://img.shields.io/badge/github-0.1.2-blue.svg)](https://github.com/crazycapivara/deckgl/releases/latest)
+[![github\_status\_badge](https://img.shields.io/badge/github-0.1.2-blue.svg)](https://github.com/crazycapivara/graphhopper-r/releases/latest)
 [![Travis build
 status](https://travis-ci.org/crazycapivara/graphhopper-r.svg?branch=master)](https://travis-ci.org/crazycapivara/graphhopper-r)
 [![Project Status: Active – The project has reached a stable, usable
