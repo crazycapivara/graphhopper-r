@@ -1,21 +1,40 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-graphhopper-R
-=============
+
+# graphhopper-R
 
 <!-- badges: start -->
-[![CRAN status](https://www.r-pkg.org/badges/version/graphhopper)](https://CRAN.R-project.org/package=graphhopper) [![Travis build status](https://travis-ci.org/crazycapivara/graphhopper-r.svg?branch=master)](https://travis-ci.org/crazycapivara/graphhopper-r) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) [![R build status](https://github.com/crazycapivara/graphhopper-r/workflows/R-CMD-check/badge.svg)](https://github.com/crazycapivara/graphhopper-r/actions) <!-- badges: end -->
 
-An R Interface to the [GraphHopper](https://www.graphhopper.com/) Directions API
+[![CRAN
+status](https://www.r-pkg.org/badges/version/graphhopper)](https://CRAN.R-project.org/package=graphhopper)
+[![github\_status\_badge](https://img.shields.io/badge/github-0.1.2-blue.svg)](https://github.com/crazycapivara/deckgl/releases/latest)
+[![Travis build
+status](https://travis-ci.org/crazycapivara/graphhopper-r.svg?branch=master)](https://travis-ci.org/crazycapivara/graphhopper-r)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![R build
+status](https://github.com/crazycapivara/graphhopper-r/workflows/R-CMD-check/badge.svg)](https://github.com/crazycapivara/graphhopper-r/actions)
+<!-- badges: end -->
 
-The purpose of {graphhopper} is to provide a quick and easy access to the GraphHopper Directions API. Responses can be converted into simple feature (sf) objects in a convenient way. The package is not a complete wrapper of the API. Currently it mainly supports the API also included in [Graphhopper's Open Source routing engine](https://github.com/graphhopper/graphhopper). New features will be added continuously.
+An R Interface to the [GraphHopper](https://www.graphhopper.com/)
+Directions API
 
-Dive into the [documentation here](https://crazycapivara.github.io/graphhopper-r/).
+The purpose of {graphhopper} is to provide a quick and easy access to
+the GraphHopper Directions API. Responses can be converted into simple
+feature (sf) objects in a convenient way. The package is not a complete
+wrapper of the API. Currently it mainly supports the API also included
+in [Graphhopper’s Open Source routing
+engine](https://github.com/graphhopper/graphhopper). New features will
+be added continuously.
 
-Installation
-------------
+Dive into the [documentation
+here](https://crazycapivara.github.io/graphhopper-r/).
 
-Install the release version from [CRAN](https://cran.r-project.org/) with:
+## Installation
+
+Install the release version from [CRAN](https://cran.r-project.org/)
+with:
 
 ``` r
 install.packages("graphhopper")
@@ -28,8 +47,7 @@ Install the development version from [GitHub](https://github.com/) with:
 remotes::install_github("crazycapivara/graphhopper-r")
 ```
 
-Get started
------------
+## Get started
 
 Run your own GraphHopper instance (with data of Berlin):
 
@@ -50,9 +68,9 @@ info <- gh_get_info()
 info$version
 #> [1] "2.0"
 info$data_date
-#> [1] "2020-11-10T21:42:03Z"
+#> [1] "2020-12-04T21:42:03Z"
 gh_bbox(info)
-#> [1] 13.06979 52.33306 13.76408 52.67962
+#> [1] 13.06979 52.33306 13.76352 52.67962
 ```
 
 ### Route
@@ -71,19 +89,19 @@ end_point <- c(52.539614, 13.364868)
 #> bbox:           xmin: 13.36501 ymin: 52.53949 xmax: 13.41483 ymax: 52.59234
 #> CRS:            EPSG:4326
 #>     time distance                       geometry
-#> 1 697411 7541.318 LINESTRING (13.41422 52.592...
+#> 1 697420 7541.438 LINESTRING (13.41422 52.592...
 
 ggplot(data = route) +
   geom_sf() +
   theme(axis.text.x = element_text(angle = 45))
 ```
 
-![](man/figures/README-route-example-1.png)
+![](man/figures/README-route-example-1.png)<!-- -->
 
 ``` r
 
 route$time
-#> [1] 697411
+#> [1] 697420
 
 via_point <- c(52.545461, 13.435249)
 
@@ -101,7 +119,7 @@ ggplot(data = gh_as_sf(route2)) +
   theme(axis.text.x = element_text(angle = 45))
 ```
 
-![](man/figures/README-route-example-2.png)
+![](man/figures/README-route-example-2.png)<!-- -->
 
 ``` r
 
@@ -147,7 +165,7 @@ ggplot() +
   theme(axis.text.x = element_text(angle = 45))
 ```
 
-![](man/figures/README-spt-example-1.png)
+![](man/figures/README-spt-example-1.png)<!-- -->
 
 Also query previous nodes to plot the network:
 
@@ -169,7 +187,7 @@ ggplot() +
   theme(axis.text.x = element_text(angle = 45))
 ```
 
-![](man/figures/README-spt-example-lines-1.png)
+![](man/figures/README-spt-example-lines-1.png)<!-- -->
 
 ### Isochrone
 
@@ -181,7 +199,8 @@ isochrone_sf <- gh_get_isochrone(start_point, time_limit = 180) %>%
 
 ggplot() +
   geom_sf(data = isochrone_sf, fill = "yellow") +
+  geom_sf(data = points_sf, aes(colour = time), size = 0.5) +
   theme(axis.text.x = element_text(angle = 45))
 ```
 
-![](man/figures/README-isochrone-example-1.png)
+![](man/figures/README-isochrone-example-1.png)<!-- -->
