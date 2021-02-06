@@ -1,7 +1,7 @@
 Package: graphhopper
 Title: An R Interface to the 'GraphHopper' Directions API
 Version: 0.1.2
-Date: 2020-12-05
+Date: 2021-02-06
 Maintainer: Stefan Kuethe <crazycapivara@gmail.com>
 Authors@R: person("Stefan", "Kuethe", role = c("aut", "cre"), email = "crazycapivara@gmail.com")
 Description: Provides a quick and easy access to the 'GraphHopper' Directions API.
