@@ -1,5 +1,7 @@
 DEFAULT_API_URL <- "http://localhost:8989"
 
+GH_API_KEY <- "GH_API_KEY"
+
 ENDPOINTS <- list(
   route = "route",
   spt = "spt",

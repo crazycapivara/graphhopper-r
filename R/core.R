@@ -9,16 +9,19 @@ gh_set_api_url <- function(api_url) {
   Sys.setenv(GH_API_URL = api_url)
 }
 
+gh_GET <- function(path, query = list(), ...) {
+  if (is.null(query$key)) query$key <- Sys.getenv(GH_API_KEY)
+  httr::GET(build_api_url(path), query = query, ...)
+}
+
 get_api_url <- function() {
   api_url <- Sys.getenv("GH_API_URL")
   ifelse(identical(api_url, ""), DEFAULT_API_URL, api_url)
 }
 
-# TODO: Refactor (not used at the moment)
-gh_get <- function(path) {
-  function(...) {
-    httr::GET(get_api_url(), path = path, query = list(...))
-  }
+build_api_url <- function(path) {
+  sub("/$", "", get_api_url()) %>%
+    paste0("/", path)
 }
 
 gh_is_avialable <- function() {

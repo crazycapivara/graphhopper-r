@@ -23,7 +23,7 @@ gh_get_spt <- function(start_point, time_limit = 600,
     reverse_flow = reverse_flow,
     profile = profile
   )
-  response <- httr::GET(get_api_url(), path = ENDPOINTS$spt, query = query)
+  response <- gh_GET(ENDPOINTS$spt, query = query)
   if (is_request_error(response)) return(response)
 
   suppressWarnings(
