@@ -1,3 +1,7 @@
+# graphhopper 0.1.3
+
+* Fixed bug with graphhopper API url when using Web Service (#15)
+
 # graphhopper 0.1.2
 
 * Bug fix `gh` classes (incorrect order of classes caused problems with `dplyr`)
