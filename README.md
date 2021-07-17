@@ -7,7 +7,7 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/graphhopper)](https://CRAN.R-project.org/package=graphhopper)
-[![github\_status\_badge](https://img.shields.io/badge/github-0.1.2-blue.svg)](https://github.com/crazycapivara/graphhopper-r/releases/latest)
+[![github\_status\_badge](https://img.shields.io/badge/github-0.1.3-blue.svg)](https://github.com/crazycapivara/graphhopper-r/releases/latest)
 [![Travis build
 status](https://travis-ci.org/crazycapivara/graphhopper-r.svg?branch=master)](https://travis-ci.org/crazycapivara/graphhopper-r)
 [![Project Status: Active – The project has reached a stable, usable
@@ -24,8 +24,8 @@ The purpose of {graphhopper} is to provide a quick and easy access to
 the GraphHopper Directions API. Responses can be converted into simple
 feature (sf) objects in a convenient way. The package is not a complete
 wrapper of the API. Currently it mainly supports the API also included
-in [Graphhopper’s Open Source routing
-engine](https://github.com/graphhopper/graphhopper). New features will
+in [GraphHopper’s Open Source Routing
+Engine](https://github.com/graphhopper/graphhopper). New features will
 be added continuously.
 
 Dive into the [documentation
@@ -61,6 +61,7 @@ docker run --name gh --rm -p 8989:8989 -d graphhopper/graphhopper:2.0
 library(graphhopper)
 
 API_URL <- "http://localhost:8989"
+# API_URL <- "https://graphhopper.com/api/1/"
 gh_set_api_url(API_URL)
 
 info <- gh_get_info()
@@ -72,6 +73,11 @@ info$data_date
 gh_bbox(info)
 #> [1] 13.06979 52.33306 13.76352 52.67962
 ```
+
+If you use the [GraphHopper Web Service](https://graphhopper.com/api/1/)
+instead of a local instance it is recommended that you store your API
+key in an environment variable called `GH_API_KEY`. Alternatively, you
+can pass the key as parameter to the `gh_get_*` functions.
 
 ### Route
 
