@@ -11,7 +11,9 @@ gh_get_isochrone <- function(start_point, time_limit = 180, distance_limit = -1,
     distance_limit = distance_limit,
     ...
   )
-  response <- httr::GET(get_api_url(), path = ENDPOINTS$isochrone, query = query)
+  response <- gh_GET(ENDPOINTS$isochrone, query = query)
+  if (is_request_error(response)) return(response)
+
   httr::content(response) %>%
     set_gh_class("gh_isochrone")
 }
